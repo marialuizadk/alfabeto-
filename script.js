@@ -1,20 +1,20 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const letrasForma = document.getElementById('letras-forma');
-    const letrasCursiva = document.getElementById('letras-cursiva');
-
-    const alfabeto = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-
-    for (let letra of alfabeto) {
-        // Letra de forma
-        const divForma = document.createElement('div');
-        divForma.classList.add('letra', 'letra-forma');
-        divForma.textContent = letra;
-        letrasForma.appendChild(divForma);
-
-        // Letra cursiva
-        const divCursiva = document.createElement('div');
-        divCursiva.classList.add('letra', 'letra-cursiva');
-        divCursiva.textContent = letra;
-        letrasCursiva.appendChild(divCursiva);
+    const urlParams = new URLSearchParams(window.location.search);
+    const letter = urlParams.get('letter');
+    
+    if (letter) {
+        document.getElementById('letter-display').textContent = letter;
+        document.getElementById('letter-info').textContent = letter;
+        document.getElementById('letter-example').textContent = letter;
+        
+        const examplesContainer = document.getElementById('examples-container');
+        
+        for (let i = 1; i <= 5; i++) {
+            const div = document.createElement('div');
+            div.textContent = `${letter}-${i}`;
+            div.classList.add('example');
+            examplesContainer.appendChild(div);
+        }
     }
 });
+
